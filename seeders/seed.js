@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const MONGO_URI = process.env.MONGO_URI;
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(MONGO_URI);
+    console.log("MongoDB connected for seeding...");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};
+
+const runSeeder = async (seeder) => {
+  await connectDB();
+  await seeder();
+  mongoose.connection.close();
+};
+
+module.exports = runSeeder;

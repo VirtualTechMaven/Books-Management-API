@@ -1,0 +1,92 @@
+1. Register User
+Method: POST
+URL: http://localhost:5000/api/auth/register
+Description: Register a new user in the system. All fields are required. Passwords are hashed before storage. On successful registration, an access token and a refresh token are returned.
+Headers: None required
+Body (JSON):
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response (201 Created):
+
+{
+  "accessToken": "<JWT_ACCESS_TOKEN>",
+  "refreshToken": "<JWT_REFRESH_TOKEN>"
+}
+
+
+2. Login User
+Method: POST
+URL: http://localhost:5000/api/auth/login
+Description: Authenticate an existing user using email and password. On success, returns an access token and a refresh token.
+Headers: None required
+Body (JSON):
+
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response (200 OK):
+
+{
+  "accessToken": "<JWT_ACCESS_TOKEN>",
+  "refreshToken": "<JWT_REFRESH_TOKEN>"
+}
+
+
+3. Refresh Token
+Method: POST
+URL: http://localhost:5000/api/auth/refresh-token
+Description: Generate a new access token and refresh token using a valid refresh token.
+Headers: None required
+Body (JSON):
+
+{
+  "refreshToken": "<JWT_REFRESH_TOKEN>"
+}
+
+Response (200 OK):
+
+{
+  "accessToken": "<NEW_JWT_ACCESS_TOKEN>",
+  "refreshToken": "<NEW_JWT_REFRESH_TOKEN>"
+}
+
+
+4. Logout
+Method: POST
+URL: http://localhost:5000/api/auth/logout
+Description: Log out a user by invalidating the refresh token.
+Headers: None required
+Body (JSON):
+
+{
+  "refreshToken": "<JWT_REFRESH_TOKEN>"
+}
+
+Response (200 OK):
+
+{ "message": "Logged out successfully" }
+
+
+
+5. Get User Profile
+Method: GET
+URL: http://localhost:5000/api/auth/profile
+Description: Retrieve the profile of the authenticated user. Requires a valid access token.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+Body: None
+Response (200 OK):
+
+{
+  "id": "user_id",
+  "name": "John Doe",
+  "email": "john@example.com"
+}

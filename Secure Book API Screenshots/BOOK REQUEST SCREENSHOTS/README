@@ -1,0 +1,112 @@
+Important: All book requests require the Authorization header:
+Key: Authorization
+Value: Bearer
+
+1. Create Book
+Method: POST
+URL: http://localhost:5000/api/books
+Description: Add a new book to the database. Requires authorization.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+Content-Type: application/json
+Body (JSON):
+
+{
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "year": 1925,
+  "genre": "Fiction"
+}
+
+Response (201 Created):
+
+{
+  "_id": "book_id_here",
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "year": 1925,
+  "genre": "Fiction"
+}
+
+
+2. Get All Books
+Method: GET
+URL: http://localhost:5000/api/books
+Description: Retrieve a paginated list of all books. Requires authorization.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+Query Parameters (optional):
+page=<page_number>
+limit=<items_per_page>
+author=<author_name> (for filtering)
+
+Response (200 OK):
+
+{
+  "books": [
+    {
+      "_id": "book_id_here",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "year": 1925,
+      "genre": "Fiction"
+    }
+  ],
+  "page": 1,
+  "limit": 10,
+  "total": 50
+}
+
+3. Get Single Book by ID
+Method: GET
+URL: http://localhost:5000/api/books/:id
+Description: Retrieve a single book by its ID. Requires authorization.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+
+Response (200 OK):
+
+{
+  "_id": "book_id_here",
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "year": 1925,
+  "genre": "Fiction"
+}
+
+4. Update Book by ID
+Method: PUT
+URL: http://localhost:5000/api/books/:id
+Description: Update a book’s details by its ID. Requires authorization.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+Content-Type: application/json
+Body (JSON):
+{
+  "title": "The Great Gatsby Updated",
+  "author": "F. Scott Fitzgerald",
+  "year": 1925,
+  "genre": "Classic"
+}
+
+Response (200 OK):
+
+{
+  "_id": "book_id_here",
+  "title": "The Great Gatsby Updated",
+  "author": "F. Scott Fitzgerald",
+  "year": 1925,
+  "genre": "Classic"
+}
+
+5. Delete Book by ID
+Method: DELETE
+URL: http://localhost:5000/api/books/:id
+Description: Remove a book from the database by its ID. Requires authorization.
+Headers:
+Authorization: Bearer <JWT_ACCESS_TOKEN>
+
+Response (200 OK):
+{
+  "message": "Book deleted successfully"
+}
