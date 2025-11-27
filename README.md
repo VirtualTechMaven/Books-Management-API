@@ -363,7 +363,7 @@ Check:
 
 ---
 
-# 👨‍💻 **Contributing**
+#  **Contributing**
 
 PRs are welcome.
 Fork → Branch → Commit → PR.
