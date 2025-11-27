@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "fbab7dc4-e4fc-468e-974e-f91707b22f39",
+		"name": "Secure Book API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49618901"
+	},
+	"item": [
+		{
+			"name": "AUTH REQUESTS",
+			"item": [
+				{
+					"name": "REGISTER USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REFRESH TOKEN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USER PROFILE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### 1\\. **Register User**\n\n- **Method:** POST\n- **URL:** `http://localhost:5000/api/auth/register`\n- **Description:** Register a new user in the system. All fields are required. Passwords are hashed before storage. On successful registration, an access token and a refresh token are returned.\n- **Headers:** None required\n- **Body (JSON):**\n    \n\n```\n{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}\n\n ```\n\n- **Response (201 Created):**\n    \n\n```\n{\n  \"accessToken\": \"<JWT_ACCESS_TOKEN>\",\n  \"refreshToken\": \"<JWT_REFRESH_TOKEN>\"\n}\n\n ```\n\n---\n\n### 2\\. **Login User**\n\n- **Method:** POST\n- **URL:** `http://localhost:5000/api/auth/login`\n- **Description:** Authenticate an existing user using email and password. On success, returns an access token and a refresh token.\n- **Headers:** None required\n- **Body (JSON):**\n    \n\n```\n{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"accessToken\": \"<JWT_ACCESS_TOKEN>\",\n  \"refreshToken\": \"<JWT_REFRESH_TOKEN>\"\n}\n\n ```\n\n---\n\n### 3\\. **Refresh Token**\n\n- **Method:** POST\n- **URL:** `http://localhost:5000/api/auth/refresh-token`\n- **Description:** Generate a new access token and refresh token using a valid refresh token.\n- **Headers:** None required\n- **Body (JSON):**\n    \n\n```\n{\n  \"refreshToken\": \"<JWT_REFRESH_TOKEN>\"\n}\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"accessToken\": \"<NEW_JWT_ACCESS_TOKEN>\",\n  \"refreshToken\": \"<NEW_JWT_REFRESH_TOKEN>\"\n}\n\n ```\n\n---\n\n### 4\\. **Logout**\n\n- **Method:** POST\n- **URL:** `http://localhost:5000/api/auth/logout`\n- **Description:** Log out a user by invalidating the refresh token.\n- **Headers:** None required\n- **Body (JSON):**\n    \n\n```\n{\n  \"refreshToken\": \"<JWT_REFRESH_TOKEN>\"\n}\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"message\": \"Logged out\"\n}\n\n ```"
+		},
+		{
+			"name": "BOOK REQUESTS",
+			"item": [
+				{
+					"name": "CREATE BOOK",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL BOOKS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE BOOK BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE BOOK BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BOOK BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST INVALID ROUTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**Important:** All book requests require the **Authorization header**:  \n`Key: Authorization`  \n`Value: Bearer`\n\n---\n\n### 1\\. **Create Book**\n\n- **Method:** POST\n- **URL:** `http://localhost:5000/api/books`\n- **Description:** Add a new book to the database. Requires authorization.\n- **Headers:**\n    \n\n```\nAuthorization: Bearer <JWT_ACCESS_TOKEN>\nContent-Type: application/json\n\n ```\n\n- **Body (JSON):**\n    \n\n```\n{\n  \"title\": \"The Great Gatsby\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genre\": \"Fiction\"\n}\n\n ```\n\n- **Response (201 Created):**\n    \n\n```\n{\n  \"_id\": \"book_id_here\",\n  \"title\": \"The Great Gatsby\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genre\": \"Fiction\"\n}\n\n ```\n\n---\n\n### 2\\. **Get All Books**\n\n- **Method:** GET\n- **URL:** `http://localhost:5000/api/books`\n- **Description:** Retrieve a paginated list of all books. Requires authorization.\n- **Headers:**\n    \n\n```\nAuthorization: Bearer <JWT_ACCESS_TOKEN>\n\n ```\n\n- **Query Parameters (optional):**\n    \n\n```\npage=<page_number>\nlimit=<items_per_page>\nauthor=<author_name> (for filtering)\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"books\": [\n    {\n      \"_id\": \"book_id_here\",\n      \"title\": \"The Great Gatsby\",\n      \"author\": \"F. Scott Fitzgerald\",\n      \"year\": 1925,\n      \"genre\": \"Fiction\"\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 10,\n  \"total\": 50\n}\n\n ```\n\n---\n\n### 3\\. **Get Single Book by ID**\n\n- **Method:** GET\n- **URL:** `http://localhost:5000/api/books/:id`\n- **Description:** Retrieve a single book by its ID. Requires authorization.\n- **Headers:**\n    \n\n```\nAuthorization: Bearer <JWT_ACCESS_TOKEN>\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"_id\": \"book_id_here\",\n  \"title\": \"The Great Gatsby\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genre\": \"Fiction\"\n}\n\n ```\n\n---\n\n### 4\\. **Update Book by ID**\n\n- **Method:** PUT\n- **URL:** `http://localhost:5000/api/books/:id`\n- **Description:** Update a book’s details by its ID. Requires authorization.\n- **Headers:**\n    \n\n```\nAuthorization: Bearer <JWT_ACCESS_TOKEN>\nContent-Type: application/json\n\n ```\n\n- **Body (JSON):**\n    \n\n```\n{\n  \"title\": \"The Great Gatsby Updated\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genre\": \"Classic\"\n}\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"_id\": \"book_id_here\",\n  \"title\": \"The Great Gatsby Updated\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"year\": 1925,\n  \"genre\": \"Classic\"\n}\n\n ```\n\n---\n\n### 5\\. **Delete Book by ID**\n\n- **Method:** DELETE\n- **URL:** `http://localhost:5000/api/books/:id`\n- **Description:** Remove a book from the database by its ID. Requires authorization.\n- **Headers:**\n    \n\n```\nAuthorization: Bearer <JWT_ACCESS_TOKEN>\n\n ```\n\n- **Response (200 OK):**\n    \n\n```\n{\n  \"message\": \"Book deleted successfully\"\n}\n\n ```\n\nEndFragment"
+		}
+	]
+}
