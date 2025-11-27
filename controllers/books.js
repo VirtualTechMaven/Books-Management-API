@@ -1,4 +1,4 @@
-const Book = require('../models/Book');
+const Book = require('../Models/Book');
 const Joi = require('joi');
 const { paginate } = require('../utils/paginate');
 
